@@ -1,18 +1,14 @@
 const express = require('express');
 const cors = require('cors');
-const path = require('path');
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Serve React static files
-app.use(express.static(path.join(__dirname, '../frontend/dist')));
-
-// test
-app.get('/', (req, res) => {
-  res.send('Hello World');
+// ✅ Test API route
+app.get('/api/hello', (req, res) => {
+  res.json({ message: 'Hello from Express!' });
 });
 
 const port = process.env.PORT || 5000;
