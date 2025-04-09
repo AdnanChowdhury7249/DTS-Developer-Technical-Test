@@ -15,7 +15,7 @@ async function createTask(title, description, dueDate) {
   }
 }
 
-async function getTasksByTitle(title) {
+async function tasksByTitle(title) {
   const query = 'SELECT * FROM tasks WHERE title ILIKE $1';
   const values = [`%${title}%`];
   const { rows } = await pool.query(query, values);
@@ -51,5 +51,5 @@ async function updateTaskStatus(id, status) {
 }
 
 module.exports = {
-  allTasks, getTasksByTitle, createTask, deleteTask, updateTaskStatus,
+  allTasks, tasksByTitle, createTask, deleteTask, updateTaskStatus,
 };
