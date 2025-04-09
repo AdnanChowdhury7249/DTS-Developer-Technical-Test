@@ -28,6 +28,9 @@ const getTasksByTitle = async (req, res, next) => {
 
   try {
     const result = await db.tasksByTitle(title);
+    if (!result.length) {
+      return res.status(404).json({ error: 'No tasks found with that title' });
+    }
     return res.status(200).json(result);
   } catch (error) {
     return next(error);
