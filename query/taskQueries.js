@@ -5,7 +5,7 @@ async function allTasks() {
 }
 
 async function createTask(title, description, dueDate) {
-  const query = 'INSERT into tasks (name, description, due_date) VALUES ($1, $2, $3) RETURNING *;';
+  const query = 'INSERT into tasks (title, description, due_date) VALUES ($1, $2, $3) RETURNING *;';
   try {
     const result = await pool.query(query, [title, description, dueDate]);
     return result.rows[0];
