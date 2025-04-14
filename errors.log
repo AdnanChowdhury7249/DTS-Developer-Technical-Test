@@ -1,1 +1,3 @@
 {"level":"error","message":" column \"name\" of relation \"tasks\" does not exist"}
+{"level":"error","message":" invalid input syntax for type integer: \"undefined\""}
+{"level":"error","message":" invalid input syntax for type integer: \"undefined\""}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { getAllTasks, createTask } from '../api/api';
+import { getAllTasks, createTask, deleteTask } from '../api/api';
 import CreateTaskForm from './taskForm';
 import TaskModal from './taskModal';
 
@@ -30,6 +30,18 @@ const TaskPage = () => {
       console.error("Failed to add task", err);
     }
   };
+
+  const handleDeleteTask = async (id) => {
+    try {
+      await deleteTask(id)
+      setTasks((prev) => prev.filter((task) => task.id !== id))
+
+    } catch (error) {
+      console.error("failed to delete task", error)
+
+    }
+
+  }
 
   return (
     <div className="min-h-screen bg-gray-100 py-10 px-4">
@@ -63,11 +75,20 @@ const TaskPage = () => {
               <p className="text-sm text-gray-500">
                 Status: {task.status ? '✅ Complete' : '⌛ Incomplete'}
               </p>
+              <button
+                onClick={() => handleDeleteTask(task.id)}
+                className="text-red-500 hover:text-red-700 font-semibold text-sm"
+              >
+                🗑️ Delete
+              </button>
             </div>
+
           ))}
         </div>
+
       </div>
     </div>
+
   );
 }
 export default TaskPage;
