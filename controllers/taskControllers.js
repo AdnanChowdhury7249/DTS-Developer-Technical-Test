@@ -68,6 +68,20 @@ const putUpdateTask = async (req, res, next) => {
   }
 };
 
+const putEditTasks = async (req, res, next) => {
+  const { id } = req.params;
+  const { title, description, dueDate } = req.body;
+  try {
+    const result = await db.editTask(id, title, description, dueDate);
+    if (result.error) {
+      return res.status(404).json(result);
+    }
+    return res.status(200).json(result);
+  } catch (error) {
+    return next(error);
+  }
+};
+
 module.exports = {
-  getAllTasks, postCreateTask, getTasksByTitle, handleDeleteTask, putUpdateTask,
+  getAllTasks, postCreateTask, getTasksByTitle, handleDeleteTask, putUpdateTask, putEditTasks,
 };

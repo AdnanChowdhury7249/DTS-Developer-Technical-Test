@@ -1,3 +1,7 @@
 {"level":"error","message":" column \"name\" of relation \"tasks\" does not exist"}
 {"level":"error","message":" invalid input syntax for type integer: \"undefined\""}
 {"level":"error","message":" invalid input syntax for type integer: \"undefined\""}
+{"level":"error","message":" bind message supplies 3 parameters, but prepared statement \"\" requires 4"}
+{"level":"error","message":" bind message supplies 3 parameters, but prepared statement \"\" requires 4"}
+{"level":"error","message":" bind message supplies 3 parameters, but prepared statement \"\" requires 4"}
+{"level":"error","message":" (intermediate value) is not iterable"}

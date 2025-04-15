@@ -50,6 +50,20 @@ async function updateTaskStatus(id, status) {
   }
 }
 
+async function editTask(id, title, description, dueDate) {
+  const query = 'UPDATE tasks SET title = $1, description = $2, due_date = $3 WHERE id = $4 RETURNING *;';
+  try {
+    const { rows } = await pool.query(query, [title, description, dueDate, id]);
+    if (rows.length === 0) {
+      return { error: 'task not found' };
+    }
+    return rows[0];
+  } catch (error) {
+    console.error('error editing task', error);
+    throw error;
+  }
+}
+
 module.exports = {
-  allTasks, tasksByTitle, createTask, deleteTask, updateTaskStatus,
+  allTasks, tasksByTitle, createTask, deleteTask, updateTaskStatus, editTask,
 };
